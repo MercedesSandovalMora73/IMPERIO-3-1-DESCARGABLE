@@ -1,0 +1,13 @@
+{
+  "name": "IMPERIO 3.1 - Mercedes",
+  "short_name": "IMPERIO 3.1",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#020005",
+  "theme_color": "#00f3ff",
+  "icons": [{
+    "src": "https://cdn-icons-png.flaticon.com/512/4712/4712109.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
+}
