@@ -1,0 +1,40 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IMPERIO 3.1 - Mercedes</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#00f3ff">
+<style>
+body{margin:0;background:#020005;color:#fff;font-family:monospace;overflow:hidden}
+#panel{position:fixed;top:8px;left:8px;right:8px;background:rgba(0,0,0,.85);padding:10px;border-radius:12px;z-index:99;border:1px solid #00f3ff;display:flex;justify-content:space-between;flex-wrap:wrap;gap:5px}
+button{background:#00f3ff;color:#000;border:none;padding:10px 15px;border-radius:20px;font-weight:bold}
+#centro{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:210px;height:210px;background:radial-gradient(circle,#8a2be2,#000);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;box-shadow:0 0 80px #00f3ff;font-weight:bold}
+#consola{position:absolute;bottom:0;left:0;right:0;height:22%;background:rgba(2,0,8,0.95);border-top:2px solid #00f3ff;padding:10px;overflow-y:auto;font-size:11px}
+.io{position:absolute;font-size:22px;transition:all 3s}
+.zona{position:absolute;border:2px solid;border-radius:18px;padding:10px;text-align:center;width:100px;cursor:pointer}
+#c1{left:2%;top:12%;border-color:#0ff;color:#0ff}#c2{right:2%;top:12%;border-color:#ff0;color:#ff0}#c3{left:2%;bottom:28%;border-color:#0f6;color:#0f6}#c4{right:2%;bottom:28%;border-color:#f60;color:#f60}#c5{left:50%;bottom:28%;transform:translateX(-50%);border-color:#fff;color:#fff}
+</style>
+</head>
+<body>
+<div id="panel"><span>👑 IOs: <b id="pob">0</b></span><span><button onclick="bigBang()">💥 BIG BANG</button><button onclick="instalar()">📲 INSTALAR</button><button onclick="descargar()">💾 DESCARGAR</button></span></div>
+<div id="centro">MERCEDES<br>EMPERATRIZ<br>3.1<br>DESCARGABLE</div>
+<div class="zona" id="c1" onclick="crear('⚛️','cuantico')">⚛️ LAB</div>
+<div class="zona" id="c2" onclick="crear('🎨','creativo')">🎨 FORJA</div>
+<div class="zona" id="c3" onclick="crear('💎','eco')">💎 RED</div>
+<div class="zona" id="c4" onclick="crear('🕊️','paz')">🕊️ PAZ</div>
+<div class="zona" id="c5" onclick="crear('☢️','fusion')">☢️ FUSIÓN</div>
+<div id="consola">> IMPERIO 3.1 LISTO<br>> Toca BIG BANG<br>> Luego INSTALAR</div>
+<script>
+let poblacion=0,deferredPrompt=null;
+const cons=document.getElementById('consola');
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;log('📲 ¡Ya se puede instalar!')});
+function instalar(){if(deferredPrompt){deferredPrompt.prompt()}else{alert('Toca ⋮ > Instalar app o Agregar a pantalla principal')}}
+function descargar(){let blob=new Blob([document.documentElement.outerHTML],{type:'text/html'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='IMPERIO-3.1-MERCEDES.html';a.click();log('💾 Descargado')}
+function log(t){cons.innerHTML+='<br>> '+t;cons.scrollTop=cons.scrollHeight}
+function crear(icon,tipo){let d=document.createElement('div');d.className='io';d.innerText=icon;d.style.left=Math.random()*80+10+'%';d.style.top=Math.random()*40+15+'%';document.body.appendChild(d);poblacion++;document.getElementById('pob').innerText=poblacion;setInterval(()=>{d.style.left=Math.random()*85+'%';d.style.top=Math.random()*45+'%';},3500)}
+function bigBang(){for(let i=0;i<30;i++)setTimeout(()=>{let tipos=[['⚛️','cuantico'],['🎨','creativo'],['💎','eco'],['🕊️','paz'],['☢️','fusion']];let t=tipos[i%5];crear(t[0],t[1])},i*100);log('💥 BIG BANG DE MERCEDES')}
+</script>
+</body>
+</html>
